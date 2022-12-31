@@ -1,8 +1,7 @@
 obj-m := db9_gpio_rpi.o
-KVERSION := `uname -r`
 
 all:
-	$(MAKE) -C /lib/modules/$(KVERSION)/build M=$(PWD) modules
+	$(MAKE) ARCH=arm64 CROSS_COMPILE=aarch64-linux-gnu- -C $(LINUX_SRC) M=$(PWD) modules
 
 clean:
-	$(MAKE) -C /lib/modules/$(KVERSION)/build M=$(PWD) clean
+	$(MAKE) -C $(LINUX_SRC) M=$(PWD) clean
